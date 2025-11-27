@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilha 2: Estruturas de Seleção - ADA Unichristus</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="back-link">← Voltar para o Início</a></li>
+                </ul>
+                <ul>
+                    <li><strong>Algoritmos e Programação I</strong></li>
+                </ul>
+            </nav>
+            <h1>Trilha 2: Estruturas de Seleção (Decisão)</h1>
+        </header>
+
+        <section id="objetivos">
+            <h2>🎯 Objetivos de Aprendizagem</h2>
+            <ul>
+                <li>Entender a lógica booleana (Verdadeiro/Falso).</li>
+                <li>Utilizar operadores relacionais (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>) e lógicos (<code>&&</code>, <code>||</code>).</li>
+                <li>Dominar o uso de <code>if</code>, <code>else</code> e <code>else if</code>.</li>
+                <li>Aplicar a estrutura <code>switch</code> para menus e seleções simples.</li>
+            </ul>
+        </section>
+        <hr>
+
+        <section id="resumo">
+            <h2>⚡ Resumo Rápido</h2>
+            <p>Estruturas de seleção permitem que o programa escolha qual caminho seguir.</p>
+            
+            <figure>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operador</th>
+                            <th>Significado</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>==</code></td>
+                            <td>Igual a (Comparação)</td>
+                            <td><code>if (a == 10)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>!=</code></td>
+                            <td>Diferente de</td>
+                            <td><code>if (senha != 1234)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&gt;=</code></td>
+                            <td>Maior ou igual</td>
+                            <td><code>if (idade &gt;= 18)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&&</code></td>
+                            <td>E (AND) - Tudo deve ser verdade</td>
+                            <td><code>if (sol && praia)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>||</code></td>
+                            <td>OU (OR) - Um deve ser verdade</td>
+                            <td><code>if (dinheiro || cartao)</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+        </section>
+        <hr>
+
+        <section id="exemplo">
+            <h2>💻 Exemplo Comentado</h2>
+            <p>Problema: Verificar a situação de um aluno. Aprovado (Média >= 7), Recuperação (Média entre 4 e 6.9) ou Reprovado (Média < 4).</p>
+            
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    float media;
+
+    printf("Digite a média do aluno: ");
+    scanf("%f", &media);
+
+    // Estrutura de Seleção Encadeada
+    if (media >= 7.0) {
+        // Se a condição acima for VERDADEIRA, entra aqui
+        printf("Situação: APROVADO! Parabéns.");
+    } 
+    else if (media >= 4.0) {
+        // Se a primeira falhou, mas esta for VERDADEIRA, entra aqui
+        // (Significa que é menor que 7, mas maior ou igual a 4)
+        printf("Situação: RECUPERAÇÃO. Estude mais.");
+    } 
+    else {
+        // Se NENHUMA das anteriores for verdadeira
+        printf("Situação: REPROVADO.");
+    }
+
+    return 0;
+}
+            </code></pre>
+        </section>
+        <hr>
+
+        <section id="exercicios">
+            <h2>📝 Lista de Exercícios</h2>
+            <p>Teste sua lógica. Tente resolver antes de ver o gabarito.</p>
+
+            <article>
+                <h4>1. Par ou Ímpar</h4>
+                <p>Escreva um programa que leia um número inteiro e diga se ele é par ou ímpar. <br>
+                <em>Dica: Use o operador resto da divisão (%). Se o resto por 2 for 0, é par.</em></p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num;
+    printf("Digite um número: ");
+    scanf("%d", &num);
+
+    if (num % 2 == 0) {
+        printf("O número %d é PAR.", num);
+    } else {
+        printf("O número %d é ÍMPAR.", num);
+    }
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+            <article>
+                <h4>2. Maior de dois números</h4>
+                <p>Leia dois números inteiros e imprima qual deles é o maior. Se forem iguais, imprima "Números iguais".</p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int n1, n2;
+    printf("Digite dois números: ");
+    scanf("%d %d", &n1, &n2);
+
+    if (n1 > n2) {
+        printf("O maior é: %d", n1);
+    } else if (n2 > n1) {
+        printf("O maior é: %d", n2);
+    } else {
+        printf("Números iguais!");
+    }
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+            <article>
+                <h4>3. Menu de Lanchonete (Switch)</h4>
+                <p>Crie um programa que leia o código do pedido e mostre o item:<br>
+                1: Hambúrguer<br>
+                2: Pizza<br>
+                3: Salada<br>
+                Outros: Opção inválida.</p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int opcao;
+    printf("Escolha: 1-Hambúrguer, 2-Pizza, 3-Salada: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            printf("Você escolheu Hambúrguer.");
+            break;
+        case 2:
+            printf("Você escolheu Pizza.");
+            break;
+        case 3:
+            printf("Você escolheu Salada.");
+            break;
+        default:
+            printf("Opção inválida!");
+    }
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Ambiente Digital de Aprendizagem - Algoritmos I - 2025.2</small>
+        </footer>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+</body>
+</html>
