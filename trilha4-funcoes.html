@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilha 4: Funções - ADA Unichristus</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="back-link">← Voltar para o Início</a></li>
+                </ul>
+                <ul>
+                    <li><strong>Algoritmos e Programação I</strong></li>
+                </ul>
+            </nav>
+            <h1>Trilha 4: Funções (Modularização)</h1>
+        </header>
+
+        <section id="objetivos">
+            <h2>🎯 Objetivos de Aprendizagem</h2>
+            <ul>
+                <li>Entender o conceito de dividir para conquistar (modularização).</li>
+                <li>Aprender a sintaxe de declaração e chamada de funções.</li>
+                <li>Compreender a diferença entre <strong>parâmetros</strong> (entrada) e <strong>retorno</strong> (saída).</li>
+                <li>Distinguir variáveis locais (dentro da função) de globais.</li>
+            </ul>
+        </section>
+        <hr>
+
+        <section id="resumo">
+            <h2>⚡ Resumo Rápido</h2>
+            <p>Uma função é um bloco de código que realiza uma tarefa específica e pode ser "chamado" várias vezes.</p>
+            
+            <figure>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Conceito</th>
+                            <th>Explicação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tipo de Retorno</strong></td>
+                            <td>O que a função devolve? (ex: <code>int</code>, <code>float</code>). Se não devolve nada, usamos <code>void</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parâmetros</strong></td>
+                            <td>Dados que a função precisa receber para trabalhar (as variáveis dentro dos parênteses).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Return</strong></td>
+                            <td>Comando que encerra a função e envia o resultado de volta para quem chamou.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <blockquote>
+                <strong>Analogia:</strong> Uma função é como um liquidificador. <br>
+                <strong>Entrada (Parâmetros):</strong> Frutas e Leite.<br>
+                <strong>Processamento:</strong> Bater tudo.<br>
+                <strong>Saída (Retorno):</strong> A vitamina pronta.
+            </blockquote>
+        </section>
+        <hr>
+
+        <section id="exemplo">
+            <h2>💻 Exemplo Comentado</h2>
+            <p>Vamos criar uma função que soma dois números e devolve o resultado para a <code>main</code>.</p>
+            
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+// --- 1. Declaração da Função ---
+// Ela recebe dois inteiros (a e b) e promete devolver um inteiro (int)
+int somar(int a, int b) {
+    int resultado;
+    resultado = a + b;
+    return resultado; // Devolve o valor para quem chamou
+}
+
+// Função VOID: Apenas executa uma ação, não devolve número
+void saudacao() {
+    printf("--- Bem-vindo ao Sistema de Soma ---\n");
+}
+
+// --- 2. Função Principal ---
+int main() {
+    int n1, n2, total;
+
+    saudacao(); // Chamando a função void
+
+    printf("Digite o primeiro número: ");
+    scanf("%d", &n1);
+    printf("Digite o segundo número: ");
+    scanf("%d", &n2);
+
+    // Chamando a função 'somar' e guardando o retorno na variável 'total'
+    total = somar(n1, n2);
+
+    printf("A soma é: %d", total);
+
+    return 0;
+}
+            </code></pre>
+        </section>
+        <hr>
+
+        <section id="exercicios">
+            <h2>📝 Lista de Exercícios</h2>
+            <p>Pratique a criação de módulos.</p>
+
+            <article>
+                <h4>1. O Dobro</h4>
+                <p>Crie uma função chamada <code>calcularDobro</code> que receba um número inteiro e retorne o dobro dele.</p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int calcularDobro(int num) {
+    return num * 2;
+}
+
+int main() {
+    int x;
+    printf("Digite um número: ");
+    scanf("%d", &x);
+    
+    printf("O dobro é: %d", calcularDobro(x));
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+            <article>
+                <h4>2. Maior de Dois</h4>
+                <p>Faça uma função que receba dois números <code>float</code> e retorne o maior deles.</p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+float maior(float n1, float n2) {
+    if (n1 > n2) {
+        return n1;
+    } else {
+        return n2;
+    }
+}
+
+int main() {
+    float a = 5.5, b = 8.2;
+    printf("O maior é: %.1f", maior(a, b));
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+            <article>
+                <h4>3. Par ou Ímpar (Modularizado)</h4>
+                <p>Crie uma função que receba um número. Se for par, a função imprime "PAR". Se for ímpar, imprime "ÍMPAR". (Dica: Use <code>void</code> pois ela já imprime).</p>
+                <details>
+                    <summary>Ver Gabarito</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+void verificarParImpar(int n) {
+    if (n % 2 == 0) {
+        printf("O número %d é PAR.\n", n);
+    } else {
+        printf("O número %d é ÍMPAR.\n", n);
+    }
+}
+
+int main() {
+    verificarParImpar(10);
+    verificarParImpar(7);
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Ambiente Digital de Aprendizagem - Algoritmos I - 2025.2</small>
+        </footer>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+</body>
+</html>
