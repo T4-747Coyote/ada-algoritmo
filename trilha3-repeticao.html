@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilha 3: Repetição - ADA Unichristus</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="back-link">← Voltar para o Início</a></li>
+                </ul>
+                <ul>
+                    <li><strong>Algoritmos e Programação I</strong></li>
+                </ul>
+            </nav>
+            <h1>Trilha 3: Estruturas de Repetição (Laços)</h1>
+        </header>
+
+        <section id="objetivos">
+            <h2>🎯 Objetivos de Aprendizagem</h2>
+            <ul>
+                <li>Compreender o conceito de "loop" (ciclo) e iteração.</li>
+                <li>Diferenciar quando usar <code>for</code> (contável) e <code>while</code> (condicional).</li>
+                <li>Utilizar acumuladores e contadores dentro de laços.</li>
+                <li>Evitar o erro comum de "loop infinito".</li>
+            </ul>
+        </section>
+        <hr>
+
+        <section id="resumo">
+            <h2>⚡ Resumo Rápido</h2>
+            <p>Usamos laços para repetir um bloco de código várias vezes sem precisar copiar e colar.</p>
+            
+            <figure>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Quando usar?</th>
+                            <th>Sintaxe Básica</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>for</code></td>
+                            <td>Quando você <strong>sabe</strong> quantas vezes vai repetir (ex: 1 a 10).</td>
+                            <td><code>for(inicio; fim; passo)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>while</code></td>
+                            <td>Quando você <strong>não sabe</strong> o total, apenas a condição de parada.</td>
+                            <td><code>while(condicao) { ... }</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>do-while</code></td>
+                            <td>Igual ao while, mas garante que execute <strong>pelo menos 1 vez</strong>.</td>
+                            <td><code>do { ... } while(condicao);</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+        </section>
+        <hr>
+
+        <section id="exemplo">
+            <h2>💻 Exemplo Comentado</h2>
+            <p><strong>Problema:</strong> Calcular a tabuada de um número digitado pelo usuário.</p>
+            
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numero, i;
+
+    printf("Quer a tabuada de qual número? ");
+    scanf("%d", &numero);
+
+    printf("\n--- Tabuada do %d ---\n", numero);
+
+    // O laço FOR é perfeito aqui: sabemos que vai de 1 até 10.
+    // i começa em 1; repete enquanto i for menor ou igual a 10; i aumenta de 1 em 1 (i++)
+    for (i = 1; i <= 10; i++) {
+        
+        // Multiplica o número fixo pelo contador atual (i)
+        int resultado = numero * i;
+        
+        // Exibe: 5 x 1 = 5, depois 5 x 2 = 10, etc...
+        printf("%d x %d = %d\n", numero, i, resultado);
+    }
+
+    return 0;
+}
+            </code></pre>
+        </section>
+        <hr>
+
+        <section id="exercicios">
+            <h2>📝 Lista de Exercícios</h2>
+            <p>Pratique para fixar a lógica de repetição.</p>
+
+            <article>
+                <h4>1. Contagem Regressiva</h4>
+                <p>Crie um programa que exiba uma contagem de 10 até 0 usando o laço <code>for</code> e, no final, imprima "FIM!".</p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i;
+    // Note que i começa em 10, vai até 0 e diminui (i--)
+    for (i = 10; i >= 0; i--) {
+        printf("%d...\n", i);
+    }
+    printf("FIM!");
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+            <article>
+                <h4>2. Soma Acumulada (While)</h4>
+                <p>Peça para o usuário digitar números. Vá somando esses números. O programa só deve parar quando o usuário digitar <strong>0</strong>. No final, mostre a soma total.</p>
+                <details>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int num;
+    int soma = 0; // Importante zerar o acumulador!
+
+    printf("Digite números para somar (0 para sair):\n");
+    
+    // Leitura inicial
+    scanf("%d", &num);
+
+    while (num != 0) {
+        soma = soma + num; // Acumula
+        scanf("%d", &num); // Lê o próximo
+    }
+
+    printf("Soma total: %d", soma);
+    return 0;
+}
+</code></pre>
+                </details>
+            </article>
+
+            <article>
+                <h4>3. Loop Infinito (Teoria)</h4>
+                <p>O que acontece se você esquecer de incrementar o contador dentro de um <code>while</code>?</p>
+                <details>
+                    <summary>Ver Gabarito</summary>
+                    <p>Ocorre um <strong>Loop Infinito</strong>. Como a condição nunca se torna falsa, o programa fica preso repetindo a mesma coisa para sempre (ou até travar).</p>
+                </details>
+            </article>
+
+        </section>
+
+        <footer>
+            <small>Ambiente Digital de Aprendizagem - Algoritmos I - 2025.2</small>
+        </footer>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+</body>
+</html>
