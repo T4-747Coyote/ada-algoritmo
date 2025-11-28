@@ -29,41 +29,38 @@
             <h2>🎯 Objetivos de Aprendizagem</h2>
             <ul>
                 <li>Compreender o conceito de "loop" (ciclo) e iteração.</li>
-                <li>Diferenciar quando usar <code>for</code> (contável) e <code>while</code> (condicional).</li>
+                <li>Diferenciar quando usar <code>for</code> (contável), <code>while</code> (condicional) e <code>do-while</code>.</li>
                 <li>Utilizar acumuladores e contadores dentro de laços.</li>
-                <li>Evitar o erro comum de "loop infinito".</li>
             </ul>
         </section>
         <hr>
 
         <section id="resumo">
             <h2>⚡ Resumo Rápido</h2>
-            <p>Usamos laços para repetir um bloco de código várias vezes sem precisar copiar e colar.</p>
-            
             <figure>
                 <table>
                     <thead>
                         <tr>
                             <th>Comando</th>
                             <th>Quando usar?</th>
-                            <th>Sintaxe Básica</th>
+                            <th>Característica Principal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code>for</code></td>
-                            <td>Quando você <strong>sabe</strong> quantas vezes vai repetir (ex: 1 a 10).</td>
-                            <td><code>for(inicio; fim; passo)</code></td>
+                            <td>Quando sabemos o número de repetições.</td>
+                            <td>Testa no início. Ótimo para contagens.</td>
                         </tr>
                         <tr>
                             <td><code>while</code></td>
-                            <td>Quando você <strong>não sabe</strong> o total, apenas a condição de parada.</td>
-                            <td><code>while(condicao) { ... }</code></td>
+                            <td>Quando a repetição depende de algo acontecer.</td>
+                            <td>Testa no início. Pode nem rodar se a condição for falsa.</td>
                         </tr>
                         <tr>
                             <td><code>do-while</code></td>
-                            <td>Igual ao while, mas garante que execute <strong>pelo menos 1 vez</strong>.</td>
-                            <td><code>do { ... } while(condicao);</code></td>
+                            <td>Para menus e validações obrigatórias.</td>
+                            <td>Testa no final. Garante que roda <strong>pelo menos 1 vez</strong>.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -72,52 +69,102 @@
         <hr>
 
         <section id="exemplo">
-            <h2>💻 Exemplo Comentado</h2>
-            <p><strong>Problema:</strong> Calcular a tabuada de um número digitado pelo usuário.</p>
-            
-            <pre><code class="language-c">
+            <h2>💻 Exemplos Comentados</h2>
+
+            <article>
+                <h3>1. O Laço FOR (Tabuada)</h3>
+                <p>Ideal para contadores fixos (ex: de 1 a 10).</p>
+                <pre><code class="language-c">
 #include &lt;stdio.h&gt;
 
 int main() {
-    int numero, i;
+    int i, numero = 5;
 
-    printf("Quer a tabuada de qual número? ");
-    scanf("%d", &numero);
+    printf("Tabuada do 5:\n");
 
-    printf("\n--- Tabuada do %d ---\n", numero);
-
-    // O laço FOR é perfeito aqui: sabemos que vai de 1 até 10.
-    // i começa em 1; repete enquanto i for menor ou igual a 10; i aumenta de 1 em 1 (i++)
+    // i começa em 1; vai até 10; aumenta de 1 em 1
     for (i = 1; i <= 10; i++) {
-        
-        // Multiplica o número fixo pelo contador atual (i)
-        int resultado = numero * i;
-        
-        // Exibe: 5 x 1 = 5, depois 5 x 2 = 10, etc...
-        printf("%d x %d = %d\n", numero, i, resultado);
+        printf("5 x %d = %d\n", i, 5 * i);
     }
-
     return 0;
 }
-            </code></pre>
+                </code></pre>
+            </article>
+
+            <article>
+                <h3>2. O Laço WHILE (Jogo de Adivinhação)</h3>
+                <p>Usamos quando não sabemos quantas vezes o usuário vai tentar. Ele repete <strong>enquanto</strong> a condição for verdadeira.</p>
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int senhaCorreta = 1234;
+    int tentativa = 0; // Valor inicial qualquer diferente da senha
+
+    printf("--- SISTEMA DE SEGURANÇA ---\n");
+
+    // Enquanto a tentativa for DIFERENTE da senha, ele fica preso aqui
+    while (tentativa != senhaCorreta) {
+        printf("Digite a senha numérico: ");
+        scanf("%d", &amp;tentativa);
+
+        if (tentativa != senhaCorreta) {
+            printf("Acesso Negado! Tente de novo.\n");
+        }
+    }
+
+    printf("Acesso Permitido!\n");
+    return 0;
+}
+                </code></pre>
+            </article>
+
+            <article>
+                <h3>3. O Laço DO-WHILE (Menu Interativo)</h3>
+                <p>A diferença é que ele executa o bloco <strong>antes</strong> de testar. Perfeito para menus, pois queremos mostrar as opções pelo menos uma vez.</p>
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int opcao;
+
+    // "FAÇA" isso...
+    do {
+        printf("\n--- MENU ---\n");
+        printf("1. Jogar\n");
+        printf("2. Configurações\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &amp;opcao);
+
+        if(opcao != 0) {
+            printf("Você escolheu a opção %d...\n", opcao);
+        }
+
+    // ...ENQUANTO a opção for diferente de 0.
+    } while (opcao != 0);
+
+    printf("Fim do programa.");
+    return 0;
+}
+                </code></pre>
+            </article>
+
         </section>
         <hr>
 
         <section id="exercicios">
             <h2>📝 Lista de Exercícios</h2>
-            <p>Pratique para fixar a lógica de repetição.</p>
 
             <article>
-                <h4>1. Contagem Regressiva</h4>
-                <p>Crie um programa que exiba uma contagem de 10 até 0 usando o laço <code>for</code> e, no final, imprima "FIM!".</p>
+                <h4>1. Contagem Regressiva (FOR)</h4>
+                <p>Crie um programa que exiba uma contagem de 10 até 0 e imprima "FIM!".</p>
                 <details>
                     <summary>Ver Código Resposta</summary>
 <pre><code class="language-c">
 #include &lt;stdio.h&gt;
-
 int main() {
     int i;
-    // Note que i começa em 10, vai até 0 e diminui (i--)
     for (i = 10; i >= 0; i--) {
         printf("%d...\n", i);
     }
@@ -129,40 +176,45 @@ int main() {
             </article>
 
             <article>
-                <h4>2. Soma Acumulada (While)</h4>
-                <p>Peça para o usuário digitar números. Vá somando esses números. O programa só deve parar quando o usuário digitar <strong>0</strong>. No final, mostre a soma total.</p>
+                <h4>2. Soma Acumulada (WHILE)</h4>
+                <p>Peça números ao usuário e vá somando. O programa só para quando digitar 0.</p>
                 <details>
                     <summary>Ver Código Resposta</summary>
 <pre><code class="language-c">
 #include &lt;stdio.h&gt;
-
 int main() {
-    int num;
-    int soma = 0; // Importante zerar o acumulador!
-
-    printf("Digite números para somar (0 para sair):\n");
+    int num = -1, soma = 0; // num começa diferente de 0 para entrar no loop
     
-    // Leitura inicial
-    scanf("%d", &num);
-
+    printf("Digite números (0 para sair):\n");
     while (num != 0) {
-        soma = soma + num; // Acumula
-        scanf("%d", &num); // Lê o próximo
+        scanf("%d", &amp;num);
+        soma = soma + num;
     }
-
-    printf("Soma total: %d", soma);
+    printf("Total: %d", soma);
     return 0;
 }
 </code></pre>
                 </details>
             </article>
-
+            
             <article>
-                <h4>3. Loop Infinito (Teoria)</h4>
-                <p>O que acontece se você esquecer de incrementar o contador dentro de um <code>while</code>?</p>
+                <h4>3. Validação de Nota (DO-WHILE)</h4>
+                <p>Faça um programa que peça uma nota (0 a 10). Se o usuário digitar algo inválido (ex: 15 ou -2), peça de novo até ele acertar.</p>
                 <details>
-                    <summary>Ver Gabarito</summary>
-                    <p>Ocorre um <strong>Loop Infinito</strong>. Como a condição nunca se torna falsa, o programa fica preso repetindo a mesma coisa para sempre (ou até travar).</p>
+                    <summary>Ver Código Resposta</summary>
+<pre><code class="language-c">
+#include &lt;stdio.h&gt;
+int main() {
+    float nota;
+    do {
+        printf("Digite uma nota entre 0 e 10: ");
+        scanf("%f", &amp;nota);
+    } while (nota < 0 || nota > 10);
+    
+    printf("Nota válida registrada: %.1f", nota);
+    return 0;
+}
+</code></pre>
                 </details>
             </article>
 
